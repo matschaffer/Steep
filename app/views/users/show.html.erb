@@ -209,10 +209,7 @@ body {
 <h2>Comments</h2>
 <div id = "comments">
 
-
-
-<form>
-<%= form_for(@user, Comment.new) do |f| %>
+<%= form_for(@user.comments.build) do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -224,6 +221,8 @@ body {
       </ul>
     </div>
   <% end %>
+
+  <%= f.hidden_field :user_id %>
 
   <div class="field">
     <%= f.label :title %><br />
@@ -237,8 +236,6 @@ body {
     <%= f.submit %>
   </div>
 <% end %>
-
-</form>
 
 
 </div>
